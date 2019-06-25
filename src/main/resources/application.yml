@@ -1,0 +1,7 @@
+spring:
+    datasource:
+        password: postgres
+        url: jdbc:postgresql://localhost:5432/nekst
+        username: postgres
+    jpa:
+        database: Postgresql
