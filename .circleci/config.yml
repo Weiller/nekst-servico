@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: circleci/python:2.7.14
 
     working_directory: ~/repo
 
@@ -14,16 +14,7 @@ jobs:
       - checkout
 
       # run tests!
-      #- run: gradle build -x test
-
-      - run:
-          name: Install docker
-          command: |
-            apt-get install -y apt-transport-https ca-certificates software-properties-common
-            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-
-            apt-get install -y docker-ce
-            docker --version
+      - run: gradle build -x test
 
       - run:
           name: Build Docker image
