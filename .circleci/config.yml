@@ -15,7 +15,7 @@ jobs:
 
       # run tests!
       - run: gradle build -x test
-        
+
       - setup_remote_docker:   # (2)
           docker_layer_caching: true # (3)
 

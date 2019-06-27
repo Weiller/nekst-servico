@@ -1,0 +1,21 @@
+image: docker:stable
+
+stages:
+  - build
+
+before_script:
+  - apt-get -q update -y
+
+build_homol:
+  stage: build
+  image: openjdk:8-jdk
+  script:
+    - gradle build -x test
+  artifacts:
+    paths:
+      - build/libs/
+
+docker_image:
+  stage: build
+  script:
+    - docker build ./ -t springbootapp
