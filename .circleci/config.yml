@@ -15,6 +15,8 @@ jobs:
 
       # run tests!
       #- run: gradle build -x test
+      - setup_remote_docker:   # (2)
+          docker_layer_caching: true # (3)
 
       - run:
           name: Install Docker client
@@ -23,7 +25,7 @@ jobs:
             VER="17.03.0-ce"
             curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
-            chmod -R 777 ./repo
+            
             mv /tmp/docker/* /usr/bin
 
       - run:
