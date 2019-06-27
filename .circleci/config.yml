@@ -13,7 +13,6 @@ jobs:
     steps:
       - checkout
 
-      # run tests!
       - run: gradle build -x test
 
       - run:
@@ -25,7 +24,5 @@ jobs:
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
 
             sudo mv /tmp/docker/* /usr/bin
+            docker build ./ -t springbootapp
 
-      - run:
-          name: Build Docker image
-          command: docker build ./ -t springbootapp
