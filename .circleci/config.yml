@@ -13,7 +13,11 @@ jobs:
     steps:
       - checkout
 
+      # run tests!
       - run: gradle build -x test
+        
+      - setup_remote_docker:   # (2)
+          docker_layer_caching: true # (3)
 
       - run:
           name: Install Docker client
@@ -24,5 +28,7 @@ jobs:
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
 
             sudo mv /tmp/docker/* /usr/bin
-            docker build ./ -t springbootapp
 
+      - run:
+          name: Build Docker image
+          command: docker build ./ -t springbootapp
