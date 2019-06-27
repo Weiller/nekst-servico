@@ -14,17 +14,17 @@ jobs:
       - checkout
 
       # run tests!
-      - run: gradle build -x test
+      #- run: gradle build -x test
 
       - run:
           name: Install docker
           command: |
             apt-get update --fix-missing
-            apt-get install -y apt-transport-https ca-certificates software-properties-common
+            sudo apt-get install -y apt-transport-https ca-certificates software-properties-common
             curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-    
+
             apt-get update
-            apt-get install -y docker-ce
+            sudo apt-get install -y docker-ce
             docker --version
 
       - run:
