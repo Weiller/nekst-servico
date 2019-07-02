@@ -17,30 +17,27 @@ jobs:
       - checkout
 
       - run:
-          name: test
+          name: Test
           command: |
-            wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip
-            unzip sonar-scanner-cli-3.2.0.1227-linux.zip
             gradle test jacocoTestReport --info
-            export SONAR_SCANNER_OPTS="-Xmx2048m"
-            eval ./sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner   -Dsonar.projectKey=Weiller_nekst-servico \
-                                                                      -Dsonar.organization=weiller-github \
-                                                                      -Dsonar.sources=src/main/kotlin \
-                                                                      -Dsonar.coverage.jacoco.xmlReportPaths=build/jacocoXml.xml \
-                                                                      -Dsonar.host.url=https://sonarcloud.io \
-                                                                      -Dsonar.binaries=build/classes \
-                                                                      -Dsonar.login=a8a4aa2b2a04425660ba4e0311baeacddb3eda64
 
       - run:
-          name: build
+          name: Build
           command: |
             gradle build --info
 
-      - setup_remote_docker:   # (2)
-          docker_layer_caching: true # (3)
+      - run:
+          name: Install Sonar Client
+          command: |
+            wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip
+            unzip sonar-scanner-cli-3.2.0.1227-linux.zip
+            export SONAR_SCANNER_OPTS="-Xmx2048m"
+
+      - setup_remote_docker:
+          docker_layer_caching: true
 
       - run:
-          name: Install Docker client
+          name: Install Docker Client
           command: |
             set -x
             VER="17.03.0-ce"
@@ -50,5 +47,16 @@ jobs:
             sudo mv /tmp/docker/* /usr/bin
 
       - run:
-          name: Build Docker image
+          name: Update Sonar
+          command: |
+            eval ./sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner   -Dsonar.projectKey=Weiller_nekst-servico \
+                                                                                 -Dsonar.organization=weiller-github \
+                                                                                 -Dsonar.sources=src/main/kotlin \
+                                                                                 -Dsonar.coverage.jacoco.xmlReportPaths=build/jacocoXml.xml \
+                                                                                 -Dsonar.host.url=https://sonarcloud.io \
+                                                                                 -Dsonar.binaries=build/classes \
+                                                                                 -Dsonar.login=a8a4aa2b2a04425660ba4e0311baeacddb3eda64
+
+      - run:
+          name: Build Docker Image
           command: docker build ./ -t springbootapp
