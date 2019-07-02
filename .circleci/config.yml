@@ -9,6 +9,9 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: test
 
     steps:
       - checkout
