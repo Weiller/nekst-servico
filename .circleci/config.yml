@@ -17,7 +17,21 @@ jobs:
       - checkout
 
       # run tests!
-      - run: gradle build --info
+      - run:
+            name: build
+            command: |
+              wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip
+              unzip sonar-scanner-cli-3.2.0.1227-linux.zip
+              gradle test jacocoTestReport --info
+              export SONAR_SCANNER_OPTS="-Xmx2048m"
+              eval ./sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner   -Dsonar.projectKey=Weiller_nekst-servico \
+                                                                        -Dsonar.organization=weiller-github \
+                                                                        -Dsonar.sources=src/main/kotlin \
+                                                                        -Dsonar.coverage.jacoco.xmlReportPaths=build/jacocoXml.xml \
+                                                                        -Dsonar.host.url=https://sonarcloud.io \
+                                                                        -Dsonar.binaries=build/classes \
+                                                                        -Dsonar.login=a8a4aa2b2a04425660ba4e0311baeacddb3eda64
+
 
       - setup_remote_docker:   # (2)
           docker_layer_caching: true # (3)
