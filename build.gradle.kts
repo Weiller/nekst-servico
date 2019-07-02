@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.types.checker.NewKotlinTypeChecker
 
 plugins {
 	kotlin("plugin.jpa") version "1.3.31"
@@ -6,6 +7,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.7.RELEASE"
 	kotlin("jvm") version "1.3.31"
 	kotlin("plugin.spring") version "1.3.31"
+	id("jacoco")
 }
 
 group = "br.com"
@@ -40,6 +42,7 @@ dependencies {
 		exclude(group = "junit", module = "junit")
 	}
 	testImplementation("org.springframework.security:spring-security-test")
+    compile("ru.yandex.qatools.embed:postgresql-embedded:2.10")
 }
 
 tasks.withType<Test> {
@@ -50,5 +53,35 @@ tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "1.8"
+	}
+}
+
+jacoco {
+	toolVersion = "0.8.3"
+	reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+tasks.jacocoTestReport {
+	reports {
+		xml.isEnabled = true
+		csv.isEnabled = false
+		html.destination = file("${buildDir}/jacocoHtml")
+		xml.destination = file("${buildDir}/jacocoXml.xml")
+	}
+}
+
+tasks.test {
+	extensions.configure(JacocoTaskExtension::class) {
+		file("$buildDir/jacoco/jacocoTest.exec")
+	}
+}
+
+tasks.withType<JacocoReport> {
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.map {
+			fileTree(it).apply {
+				exclude("br/com/nekstservico/service/**")
+			}
+		}))
 	}
 }
