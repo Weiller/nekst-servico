@@ -33,7 +33,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
 class EmptyDatabase {
 
     private val DEFAULT_ADDITIONAL_INIT_DB_PARAMS = Arrays
-            .asList("--nosync", "--locale=en_US.UTF-8")
+            .asList("--nosync")
 
     /**
      * @param config the PostgresConfig configuration to use to start Postgres db process
