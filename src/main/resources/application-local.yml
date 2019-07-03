@@ -1,0 +1,10 @@
+spring:
+    datasource:
+        password: postgres
+        url: jdbc:postgresql://localhost:5432/nekst
+        username: postgres
+        hikari:
+            driver-class-name: org.postgresql.Driver
+    jpa:
+        database: Postgresql
+

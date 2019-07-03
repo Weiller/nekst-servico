@@ -1,11 +1,5 @@
 spring:
-    datasource:
-        password: admin
-        url: jdbc:postgresql://postgres:5432/nekst
-        username: postgres
-    jpa:
-        database: Postgresql
     flyway:
         schemas: nekst
-
-
+    profiles:
+        active: test

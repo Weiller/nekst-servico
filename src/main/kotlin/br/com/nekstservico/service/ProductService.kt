@@ -1,14 +1,14 @@
 package br.com.nekstservico.service
 
-import br.com.nekstservico.domain.Produto
-import br.com.nekstservico.repository.ProdutoRepository
+import br.com.nekstservico.domain.Product
+import br.com.nekstservico.repository.ProductRepository
 import org.springframework.stereotype.Service
 
 @Service
-class ProdutoService(val produtoRepository: ProdutoRepository) {
+class ProductService(val productRepository: ProductRepository) {
 
     fun testar (valor1: Long, valor2: Long): Long {
-        produtoRepository.save(Produto(1, "we"))
+        productRepository.save(Product(1, "we"))
         return valor1 + valor2
     }
 }

@@ -1,9 +1,6 @@
-package br.com.nekstservico
+package br.com.nekstservico.infra
 
 import de.flapdoodle.embed.process.runtime.Network
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.DependsOn
 import org.springframework.jdbc.datasource.DriverManagerDataSource
 import java.io.IOException
 import ru.yandex.qatools.embed.postgresql.PostgresProcess
@@ -11,7 +8,7 @@ import ru.yandex.qatools.embed.postgresql.PostgresStarter
 import ru.yandex.qatools.embed.postgresql.config.PostgresConfig
 import ru.yandex.qatools.embed.postgresql.config.AbstractPostgresConfig
 import org.hibernate.cfg.AvailableSettings
-import org.springframework.context.annotation.ComponentScan
+import org.springframework.context.annotation.*
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.transaction.annotation.EnableTransactionManagement
 import ru.yandex.qatools.embed.postgresql.distribution.Version
@@ -24,16 +21,17 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
 
 
-
-
+@Profile("test")
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("br.com.nekstservico")
 @EnableJpaRepositories("br.com.nekstservico.repository")
 class EmptyDatabase {
 
-    private val DEFAULT_ADDITIONAL_INIT_DB_PARAMS = Arrays
-            .asList("--nosync")
+    companion object {
+        private val DEFAULT_ADDITIONAL_INIT_DB_PARAMS = Arrays
+                .asList("--nosync")
+    }
 
     /**
      * @param config the PostgresConfig configuration to use to start Postgres db process

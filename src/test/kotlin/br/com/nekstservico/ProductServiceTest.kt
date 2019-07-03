@@ -1,7 +1,8 @@
 package br.com.nekstservico
 
-import br.com.nekstservico.repository.ProdutoRepository
-import br.com.nekstservico.service.ProdutoService
+import br.com.nekstservico.infra.EmptyDatabase
+import br.com.nekstservico.repository.ProductRepository
+import br.com.nekstservico.service.ProductService
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -10,18 +11,18 @@ import org.springframework.test.context.ContextConfiguration
 
 @SpringBootTest
 @ContextConfiguration(classes = [EmptyDatabase::class])
-class ProdutoServiceTest {
+class ProductServiceTest {
 
     @Autowired
-    lateinit var produtoRepository: ProdutoRepository
+    lateinit var productRepository: ProductRepository
 
     @Autowired
-    lateinit var produtoService: ProdutoService
+    lateinit var productService: ProductService
 
     @Test
     fun contextLoads() {
-        val produto = produtoService.testar(1, 1)
-        produtoRepository.findAll()
+        val produto = productService.testar(1, 1)
+        productRepository.findAll()
 
     }
 }
