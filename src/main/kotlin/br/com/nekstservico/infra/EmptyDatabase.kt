@@ -60,7 +60,7 @@ class EmptyDatabase {
         val lcemfb = LocalContainerEntityManagerFactoryBean()
         lcemfb.dataSource = dataSource
         // set the packages to scan , it can be useful if you have big project and you just need to local partial entities for testing
-        lcemfb.setPackagesToScan("br.com.nekstservico.dominio", "br.com.nekstservico.repository")
+        lcemfb.setPackagesToScan("br.com.nekstservico.domain", "br.com.nekstservico.repository")
         val va = HibernateJpaVendorAdapter()
         lcemfb.jpaVendorAdapter = va
         lcemfb.setJpaProperties(getHibernateProperties())

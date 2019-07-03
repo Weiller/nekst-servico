@@ -1,4 +1,4 @@
-package br.com.nekstservico.dominio
+package br.com.nekstservico.domain
 
 import javax.persistence.*
 

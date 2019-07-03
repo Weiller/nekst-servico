@@ -1,6 +1,6 @@
 package br.com.nekstservico.repository
 
-import br.com.nekstservico.dominio.Produto
+import br.com.nekstservico.domain.Produto
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 import javax.transaction.Transactional

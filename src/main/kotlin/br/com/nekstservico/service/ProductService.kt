@@ -1,8 +1,7 @@
 package br.com.nekstservico.service
 
-import br.com.nekstservico.dominio.Produto
+import br.com.nekstservico.domain.Produto
 import br.com.nekstservico.repository.ProdutoRepository
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
