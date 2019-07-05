@@ -1,13 +1,9 @@
 package br.com.nekstservico
 
-import br.com.nekstservico.infra.EmptyDatabase
+import br.com.nekstservico.config.TestSpecification
 import org.junit.jupiter.api.Test
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.ContextConfiguration
 
-@SpringBootTest
-@ContextConfiguration(classes = [EmptyDatabase::class])
-class NekstServicoApplicationTests {
+class NekstServicoApplicationTests: TestSpecification() {
 
     @Test
     fun contextLoads() {

@@ -1,4 +1,4 @@
-package br.com.nekstservico.service
+package br.com.nekstservico.application
 
 import br.com.nekstservico.domain.Product
 import br.com.nekstservico.repository.ProductRepository

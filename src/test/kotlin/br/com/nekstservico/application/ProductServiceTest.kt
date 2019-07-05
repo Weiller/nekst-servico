@@ -1,17 +1,12 @@
-package br.com.nekstservico
+package br.com.nekstservico.application
 
-import br.com.nekstservico.infra.EmptyDatabase
+import br.com.nekstservico.config.TestSpecification
 import br.com.nekstservico.repository.ProductRepository
-import br.com.nekstservico.service.ProductService
+import br.com.nekstservico.application.ProductService
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.ContextConfiguration
 
-
-@SpringBootTest
-@ContextConfiguration(classes = [EmptyDatabase::class])
-class ProductServiceTest {
+class ProductServiceTest: TestSpecification() {
 
     @Autowired
     lateinit var productRepository: ProductRepository
