@@ -13,6 +13,10 @@ class ProductService(val productRepository: ProductRepository) {
     }
 
     fun findAll(): List<Product> {
+        if("a".equals("a")) {
+            println("só pra testar")
+        }
+        
         return productRepository.findAll()
     }
 }
