@@ -20,7 +20,6 @@ import org.springframework.orm.jpa.JpaTransactionManager
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
 
-
 @Profile("test")
 @Configuration
 @EnableTransactionManagement
@@ -101,7 +100,7 @@ class EmptyDatabase {
     fun postgresConfig(): PostgresConfig {
         val postgresConfig = PostgresConfig(Version.V9_6_11,
                 AbstractPostgresConfig.Net("localhost", Network.getFreeServerPort()),
-                AbstractPostgresConfig.Storage("test"),
+                AbstractPostgresConfig.Storage("postgres"),
                 AbstractPostgresConfig.Timeout(),
                 AbstractPostgresConfig.Credentials("user", "pass")
         )

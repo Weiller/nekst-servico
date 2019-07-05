@@ -21,8 +21,7 @@ class ProductServiceTest {
 
     @Test
     fun contextLoads() {
-        val produto = productService.testar(1, 1)
+        productService.testar(1, 1)
         productRepository.findAll()
-
     }
 }

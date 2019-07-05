@@ -85,3 +85,14 @@ tasks.withType<JacocoReport> {
 		}))
 	}
 }
+
+tasks.jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			limit {
+				minimum = BigDecimal(0.8)
+			}
+		}
+	}
+}
+

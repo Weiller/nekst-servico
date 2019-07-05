@@ -1,0 +1,11 @@
+spring:
+    jpa:
+        database: POSTGRESQL
+        database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+        hibernate:
+            ddl-auto: create-drop
+        properties:
+            hibernate:
+                temp:
+                    use_jdbc_metadata_defaults: false
+        show-sql: true

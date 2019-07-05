@@ -12,6 +12,5 @@ class NekstServicoApplicationTests {
     @Test
     fun contextLoads() {
         main(arrayOf())
-
     }
 }
