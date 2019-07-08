@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.types.checker.NewKotlinTypeChecker
 
 plugins {
 	kotlin("plugin.jpa") version "1.3.31"
