@@ -52,7 +52,7 @@ jobs:
             eval ./sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner   -Dsonar.projectKey=Weiller_nekst-servico \
                                                                                  -Dsonar.organization=weiller-github \
                                                                                  -Dsonar.sources=src/main/kotlin \
-                                                                                 -Dsonar.exclusions=src/main/kotlin/infra/** \
+                                                                                 -Dsonar.exclusions=src/main/kotlin/br/com/nekstservico/infra/** \
                                                                                  -Dsonar.coverage.jacoco.xmlReportPaths=build/jacocoXml.xml \
                                                                                  -Dsonar.host.url=https://sonarcloud.io \
                                                                                  -Dsonar.binaries=build/classes \
