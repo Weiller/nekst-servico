@@ -80,7 +80,7 @@ tasks.withType<JacocoReport> {
 	afterEvaluate {
 		classDirectories.setFrom(files(classDirectories.files.map {
 			fileTree(it).apply {
-				//exclude("br/com/nekstservico/application/**")
+				exclude("br/com/nekstservico/infra/**")
 			}
 		}))
 	}
