@@ -1,10 +1,10 @@
 package br.com.nekstservico
 
+import br.com.nekstservico.infra.WebConfig
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackageClasses = [WebConfig::class])
 class NekstServicoApplication
 
 fun main(args: Array<String>) {
