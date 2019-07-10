@@ -17,7 +17,7 @@ class ProductRest(private val productService: ProductService) {
     }
 
     @PostMapping
-    fun save(@Valid @RequestBody commandProduct: CommandProduct) {
-        productService.save(commandProduct)
+    fun save(@Valid @RequestBody commandProduct: CommandProduct): ResponseEntity<Product> {
+       return ResponseEntity(productService.save(commandProduct), HttpStatus.OK)
     }
 }
