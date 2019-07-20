@@ -36,6 +36,7 @@ class ProductServiceTest: TestSpecification() {
         Assertions.assertNotNull(productRepository.findById(product.id!!))
         Assertions.assertNotNull(historicalInputProduct)
         Assertions.assertEquals(historicalInputProduct.quantity, 1)
+        Assertions.assertEquals(historicalInputProduct.product.id, product.id!!)
     }
 
     @Test
