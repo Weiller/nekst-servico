@@ -1,5 +1,7 @@
 package br.com.nekstservico.application.product
 
+import br.com.nekstservico.domain.historicalinputproduct.HistoricalInputProduct
+import br.com.nekstservico.domain.historicaloutputproduct.HistoricalOutputProduct
 import br.com.nekstservico.domain.product.Product
 import br.com.nekstservico.domain.product.ProductOperationEnum
 import br.com.nekstservico.repository.HistoricalInputProductRepository
@@ -21,12 +23,12 @@ class ProductService(val productRepository: ProductRepository,
         return product
     }
 
-    fun createInputHistorical(product: Product, commandProduct: CommandProduct) {
-        historicalInputProductRepository.save(ConverterCommandInInputProduct.convert(product, commandProduct))
+    fun createInputHistorical(product: Product, commandProduct: CommandProduct): HistoricalInputProduct {
+        return historicalInputProductRepository.save(ConverterCommandInInputProduct.convert(product, commandProduct))
     }
 
-    fun createOutputHistorical(product: Product, commandProduct: CommandProduct) {
-        historicalOutputProductRepository.save(ConverterCommandInOutputProduct.convert(product, commandProduct))
+    fun createOutputHistorical(product: Product, commandProduct: CommandProduct): HistoricalOutputProduct {
+       return historicalOutputProductRepository.save(ConverterCommandInOutputProduct.convert(product, commandProduct))
     }
 
     fun findAll(): List<Product> {
